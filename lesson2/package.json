@@ -1,0 +1,29 @@
+{
+  "name": "js-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GennadiyShpak/node-js-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GennadiyShpak/node-js-practice/issues"
+  },
+  "homepage": "https://github.com/GennadiyShpak/node-js-practice#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
+    "express": "^4.17.2",
+    "mongoose": "^6.1.8",
+    "nodemon": "^2.0.15"
+  }
+}
