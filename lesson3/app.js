@@ -57,12 +57,12 @@ app.post('/register', async (req, res, next) => {
         const hash = await bcrypt.hash(password, 3);
         const candidate = await User.create({email, password: hash, name}); // to instanciate
         
-        const token = jwt.sign({user_id: candidate._id}, process.env.JWT_SECRET_KEY,{expiresIn: '8h'})
+        const token = jwt.sign({user_id: candidate._id}, process.env.JWT_SECRET_KEY,{expiresIn: '8h'}) //optional
         candidate.token = token;
         candidate.status = 'VIP';
         await candidate.save();
 
-        return res.status(created.code).send(created.status)
+        return res.status(created.code).send(created.status);
     } catch (error) {
         next(error)
     }
@@ -91,21 +91,18 @@ app.post('/login', async (req, res, next) => {
         // jwt.verify(user.token, process.env.JWT_SECRET_KEY, function(err, decoded) {
         //     console.log('decoded', decoded)
         // });
-        const validToken = jwt.verify(user.token, process.env.JWT_SECRET_KEY, () => {
-            return false
-        })
+        const validToken = jwt.verify(user.token, process.env.JWT_SECRET_KEY, () => false);
 
         if(!validToken) {
             const token = await jwt.sign({user_id: user._id}, process.env.JWT_SECRET_KEY,{expiresIn: '8h'});
             user.token = token;
             await user.save();
-        }
+        };
 
         return res.status(ok.code).json({
             responce: ok.status,
             token: user.token
-        })
-
+        });
    } catch (error) {
         next(error)  
    }
